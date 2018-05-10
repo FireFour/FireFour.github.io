@@ -336,6 +336,37 @@
     
     
         <article class="index-post">
+            <a class="abstract-title" href = "/2018/05/10/Linux下C网络编程：socket实现ping-pong/" >
+                
+                    <span>Linux下c/c++网络编程：socket实现ping-pong</span>
+            </a>
+            <div class="abstract-content">
+                在Linux下实现socket网络编程的示例网上有很多，在工作中遇到的场景是要测试跨机器的网络时延。之前采用了一个开源工具sfnettest来做回环测试，但是sfnt封装了较多层，一些小的定制化改动不太方便，于是打算模仿sfnt-pingpong自己在Linux下写一个ping-pong程序来测试回环的时延，顺便也练练手。
+原理程序将client和server端写在了一起，通过命令行参数来区分。运行时先运行server，再运行client。程序开始工作后，client端会先向server端发ping，具体为调用sendto()函数(这里用的是无连接的UDP协议)向server端发送一个5...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/10</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "C/C++">C/C++</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "socket">socket</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "udp">udp</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="abstract-title" href = "/2018/01/25/上海迪士尼旅游攻略/" >
                 
                     <span>上海迪士尼旅游攻略</span>
@@ -360,30 +391,6 @@
         <a class="post-tag" href="javascript:void(0);" data-tags = "life">life</a>
     
 </div>
-                
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/01/22/hello-world/" >
-                
-                    <span>Hello World</span>
-            </a>
-            <div class="abstract-content">
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/22</span>
-                </div>
-                <!-- tags  -->
                 
             </div>
         </article>
@@ -505,18 +512,24 @@ More...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/25</span><a class="archive-post-title" href= "/2018/01/25/上海迪士尼旅游攻略/" >上海迪士尼旅游攻略</a>
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2018/05/10/Linux下C网络编程：socket实现ping-pong/" >Linux下c/c++网络编程：socket实现ping-pong</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">01/22</span><a class="archive-post-title" href= "/2018/01/22/hello-world/" >Hello World</a>
+            <span class="archive-post-date">01/25</span><a class="archive-post-title" href= "/2018/01/25/上海迪士尼旅游攻略/" >上海迪士尼旅游攻略</a>
         </li>
     
     </div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="C/C++"><span class="iconfont-archer">&#xe606;</span>C/C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="socket"><span class="iconfont-archer">&#xe606;</span>socket</span>
+    
+        <span class="sidebar-tag-name" data-tags="udp"><span class="iconfont-archer">&#xe606;</span>udp</span>
     
         <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
     
@@ -552,6 +565,8 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="coding"><span class="iconfont-archer">&#xe60a;</span>coding</span>
     
         <span class="sidebar-category-name" data-categories="life-notes"><span class="iconfont-archer">&#xe60a;</span>life-notes</span>
     
