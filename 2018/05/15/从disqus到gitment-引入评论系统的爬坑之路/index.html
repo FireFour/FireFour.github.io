@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>FireFour&#39;s Studio</title>
+    <title>从disqus到gitment-引入评论系统的爬坑之路 · FireFour&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -70,6 +70,8 @@
 
     <link rel="preload" href= /css/style.css?v=20180501 as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= /css/mobile.css?v=20180501 media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -191,14 +193,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >FireFour&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">从disqus到gitment-引入评论系统的爬坑之路</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>FireFour's Studio.</a>
 </header>
@@ -219,17 +230,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            FireFour's Studio.
-            <!-- 文章页  -->
+            从disqus到gitment-引入评论系统的爬坑之路
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -237,12 +248,36 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                it's better to burn out than to fade away
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/05/15</span>
+                
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe602;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                    <span class="shareText">Share</span>
+                    <ul class="shareList">
+                        <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                            <div class="share-qrcode"></div>
+                        </li>
+                        <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                        <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                        <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                        <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                    </ul>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -346,184 +381,92 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/05/15/从disqus到gitment-引入评论系统的爬坑之路/" >
-                
-                    <span>从disqus到gitment-引入评论系统的爬坑之路</span>
-            </a>
-            <div class="abstract-content">
-                这几天一时兴起把快要遗忘的博客捡起来装修装修，然后想到要给博客的文章加个评论系统。调研了一下当下流行的评论系统发现我在用的这个hexo主题已经支持了畅言、友言、disqus、gitment四个评论系统的集成配置，只需要简单填写一下ymal里面的相关配置信息就可以启用，非常方便。看了一下disqus，嗯，国外优秀产品，官网UI很有逼格，看起来应该是高大上的，那就决定是它了~
-disqus从使用到放弃disqus的注册相对比较简单，在选择用途的时候选择在自己的网站上使用disqus就可以，之后就是按照instruction一步一步走就可以了。配置完成后，把注册用户名填入我的主题目录下面的ya...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/15</span>
-                </div>
-                <!-- tags  -->
-                
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/05/10/Linux下C网络编程-socket实现ping-pong/" >
-                
-                    <span>Linux下c/c++网络编程:socket实现ping-pong</span>
-            </a>
-            <div class="abstract-content">
-                在Linux下实现socket网络编程的示例网上有很多，在工作中遇到的场景是要测试跨机器的网络时延。之前采用了一个开源工具sfnettest来做回环测试，但是sfnt封装了较多层，一些小的定制化改动不太方便，于是打算模仿sfnt-pingpong自己在Linux下写一个ping-pong程序来测试回环的时延，顺便也练练手。
-原理程序将client和server端写在了一起，通过命令行参数来区分。运行时先运行server，再运行client。程序开始工作后，client端会先向server端发ping，具体为调用sendto()函数(这里用的是无连接的UDP协议)向server端发送一个5...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/10</span>
-                </div>
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "C/C++">C/C++</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "socket">socket</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "udp">udp</a>
-    
-</div>
-                
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/01/25/上海迪士尼旅游攻略/" >
-                
-                    <span>上海迪士尼旅游攻略</span>
-            </a>
-            <div class="abstract-content">
-                去上海三天的话时间正好，我这里推荐几个不错的景点值得一去，剩下的你们酌情考虑，看时间状况就可以了。其中迪士尼我建议是必须去的，感觉上是上海最值得游玩的景点了，尤其是适合情侣一起去。
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>这几天一时兴起把快要遗忘的博客捡起来装修装修，然后想到要给博客的文章加个评论系统。调研了一下当下流行的评论系统发现我在用的这个hexo主题已经支持了<code>畅言</code>、<code>友言</code>、<code>disqus</code>、<code>gitment</code>四个评论系统的集成配置，只需要简单填写一下ymal里面的相关配置信息就可以启用，非常方便。看了一下<code>disqus</code>，嗯，国外优秀产品，官网UI很有逼格，看起来应该是高大上的，那就决定是它了~</p>
+<h2 id="disqus从使用到放弃"><a href="#disqus从使用到放弃" class="headerlink" title="disqus从使用到放弃"></a><code>disqus</code>从使用到放弃</h2><p>disqus的注册相对比较简单，在选择用途的时候选择<code>在自己的网站上使用disqus</code>就可以，之后就是按照instruction一步一步走就可以了。配置完成后，把注册用户名填入我的主题目录下面的yaml配置文件里，然后<code>hexo clean</code>, <code>hexo generate</code>, <code>hexo s</code>打开本机端口预览，一气呵成，直接起飞~打开任意一篇博文后拉到最下面，评论框映入眼帘，舒服！</p>
+<p>然后，想看看评论框对移动设备的自适应情况，打开手机safari登上我的博文拉到最底部，刷了半天，什…么…都…没…有！我在想是不是浏览器不兼容，然后尝试了在PC机上的edge和IE11，发现也都不能显示评论框。。。初步定为是disqus浏览器兼容性有问题，就搁置了几天。</p>
+<p>过几天准备再找解决方案的时候想了一下，disqus这么大的国外受众不应该不支持这些主流浏览器啊，于是仔细想了一下，感觉有没有可能是你懂的的原因在国内无法访问，但是我在chrome里面访问我的博客switchyOmega的规则显示是直接访问没走代理啊。为了验证，我在手机上打开了代理，发现评论框竟然可以正常显示了，果然还是被墙了，所以表现出来是只有我PC机上的chrome可以正常访问，原因是chrome加载disqus的时候走的外链通过switchyOmega的过滤规则定向到了代理节点，然后主页面的其他DOM是直接加载得到。</p>
+<p>好吧，折腾了半天，想了想，还是决定放弃disqus，换用一个国内外都兼容的评论系统。</p>
+<h2 id="gitment一探究竟"><a href="#gitment一探究竟" class="headerlink" title="gitment一探究竟"></a><code>gitment</code>一探究竟</h2><p>对比了一下其他竞品，多说关闭了，其他的几个评论系统国外访问不友好（虽然我的小博估计也没什么国外流量哈哈），但是突然发现了<code>gitment</code>这个神器，竟然是一个国内大佬以<code>github issues</code>为基础改的，感觉耳目一新，而且，虽然是只能用<code>github</code>账号登录评论，但是考虑到博客的受众，问题应该不大。于是，就开始用<code>gitment</code>替代<code>disqus</code>。</p>
+<h3 id="初步搭建"><a href="#初步搭建" class="headerlink" title="初步搭建"></a>初步搭建</h3><p>具体的步骤这里就不做赘述了，把<code>gitment</code>作者的<a href="https://imsun.net/posts/gitment-introduction/" target="_blank" rel="noopener">博客</a>贴上来直接操作就可以。</p>
+<ul>
+<li>注册 OAuth Application</li>
+<li>引入 Gitment<pre><code>id: &apos;页面 ID&apos;, // 可选。默认为 location.href
+owner: &apos;你的 GitHub ID&apos;,
+repo: &apos;存储评论的 repo&apos;,
+oauth: {
+    client_id: &apos;你的 client ID&apos;,
+    client_secret: &apos;你的 client secret&apos;,
+},
+</code></pre>  原文中提到的四个配置项填好就可以，注意<code>owner</code>是github的昵称，<code>repo</code>是仓库名不是仓库的<code>.git</code>地址。剩下的两项填注册<code>OAuth Application</code>后生成的就可以。</li>
+<li>初始化评论</li>
+</ul>
+<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><p>实际部署的时候遇到了两个问题。</p>
+<ul>
+<li><p>部署后评论框上方出现<code>Error: Not Fount</code></p>
+<p>  这个问题主要原因是默认的<code>id</code>采用了文章标题，所以会过长导致对应的<code>github issue</code>的<code>tag</code>过长（每篇文章的评论对应一个issue, issue有两个<code>tag</code>，一个是<code>&quot;gitment&quot;</code>，另一个就是之前配置项中缺省不填的<code>id</code>）。解决方案也很简单，把之前四个配置项中默认注释掉的<code>id: &#39;页面 ID&#39;, // 可选。默认为 location.href</code>解注，改为<code>page.date</code>，用日期作为id可以解决长度问题，修改后就不会报错了。</p>
+</li>
+<li>点击<code>Login</code>登录<code>github</code>账号后重定向错误问题<br>  这个问题很可能都会遇到，如果没遇到可能是因为你无意识地避开了这个问题。用hexo new一个新文章的时候，hexo会把这篇文章的文件名作为该篇博文的<code>url</code>。文件名是不支持<code>\ / : * ? &quot; &lt; &gt; |</code>等符号的，但是却可以支持中文标点符号。如果你在文件名中使用了中文标点，那么恭喜你，这个问题就出现了。<code>url</code>中包含中文标点没问题，浏览器也可以正常访问，但是<code>gitment</code>生成的重定向<code>url</code>会把中文标点自动改为英文标点保存在对应<code>issue</code>的第一条评论（这里的地址会作为重定向的地址），因此重定向以后地址不匹配从而报404错误，或者会跳回你在<code>OAuth</code>中填写的<code>callback url</code>，也就是博客首页。所以还是在<code>hexo new</code>文件名的时候避免使用中文标点为好，要想修正这个问题还需要在更正文件名后把github仓库里对应issue的第一条评论里面的url链接也替换为新的文章链接才可以。</li>
+</ul>
 
-上海迪士尼乐园
-门票：这个比较推荐所以先说。建议周一到周五去，每个人门票在360元左右，如果是六日的话会涨到499。
-准备：建议你们提前下载一个上海迪士尼的app，应用商店都可以搜得到，上面有园区内的地图，还有每一个项目的实时排队等待时间。在迪士尼如果效率高的话一天可以玩差不多。
-游玩项目：推荐几个最值得游玩的项目：飞跃地平线、加勒比海盗、创·极速光轮、雷鸣山漂流（可能没营业）、七个小矮人矿山车、加勒比海盗...
-            </div>
-            <div class="abstract-post-meta">
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/25</span>
-                </div>
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
+    </article>
+    <!-- license  -->
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "life">life</a>
-    
-</div>
-                
-            </div>
-        </article>
+        <div class="license-wrapper">
+            <p>原文作者: <a href="http://firefour.cn">FireFour</a>
+            <p>原文链接: <a href="http://firefour.cn/2018/05/15/从disqus到gitment-引入评论系统的爬坑之路/">http://firefour.cn/2018/05/15/从disqus到gitment-引入评论系统的爬坑之路/</a>
+            <p>发表日期: <a href="http://firefour.cn/2018/05/15/从disqus到gitment-引入评论系统的爬坑之路/">May 15th 2018, 10:51:34</a>
+            <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/05/10/Linux下C网络编程-socket实现ping-pong/" title= Linux下c/c++网络编程:socket实现ping-pong >
+                    <div class="prevTitle">Linux下c/c++网络编程:socket实现ping-pong</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id: "从disqus到gitment-引入评论系统的爬坑之路", // 可选。默认为 location.href
+        id: "Tue May 15 2018 10:51:34 GMT+0800", // 可选。默认为 location.href
+        owner: 'FireFour',
+        repo: 'FireFour-Gitment-Comments',
+        oauth: {
+            client_id: '2fb9cec0e89f77aa34aa',
+            client_secret: '605c8d5ef7fbf841e645cf4fd57061b4b0deed39',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" src= /avatar/Misaka.jpg >
-    <div class="profile-name">FireFour</div>
-    
-    <div class="profile-signature">
-        witness me
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:491585115@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/FireFour" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/WeChat.jpg" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">
@@ -596,6 +539,24 @@ disqus从使用到放弃disqus的注册相对比较简单，在选择用途的�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#disqus从使用到放弃"><span class="toc-number">1.</span> <span class="toc-text">disqus从使用到放弃</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitment一探究竟"><span class="toc-number">2.</span> <span class="toc-text">gitment一探究竟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步搭建"><span class="toc-number">2.1.</span> <span class="toc-text">初步搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#踩坑"><span class="toc-number">2.2.</span> <span class="toc-text">踩坑</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -739,6 +700,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
     
     </body>
 </html>
