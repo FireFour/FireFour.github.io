@@ -336,6 +336,37 @@
     
     
         <article class="index-post">
+            <a class="abstract-title" href = "/2018/05/17/linux下pthread条件变量实现生产者消费者示例/" >
+                
+                    <span>linux下pthread条件变量实现生产者消费者示例</span>
+            </a>
+            <div class="abstract-content">
+                Linux下pthread线程同步主要有两种方法：信号量(semaphore)和条件变量(condition_variable)，在生产者消费者的实例中，通常用到的是信号量来进行同步。本文采用条件变量的通知机制，实现类似信号量的功能，完成生产者消费者示例，并在最后贴出代码。另外pthread的信号量有二值信号量和计数信号量两种，第一种信号量只有0和1两个值，用法类似条件变量，第二种就是传统的介于0-限制值的一个信号量，可以用来统计可用资源数目。本文就是用了notempty和notfull两个条件变量来表示资源空和资源已达上限两种状态。
+程序步骤首先，用户需要在main函数里创建consu...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/17</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "C/C++">C/C++</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "linux">linux</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "pthread">pthread</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="abstract-title" href = "/2018/05/10/Linux下C网络编程-socket实现ping-pong/" >
                 
                     <span>Linux下c/c++网络编程:socket实现ping-pong</span>
@@ -476,7 +507,20 @@
     
     
     
-    <div class="total-archive"> Total : 3 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 4 </div>
     
     <div class="post-archive">
     
@@ -485,6 +529,11 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href= "/2018/05/17/linux下pthread条件变量实现生产者消费者示例/" >linux下pthread条件变量实现生产者消费者示例</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -512,11 +561,15 @@
     
         <span class="sidebar-tag-name" data-tags="udp"><span class="iconfont-archer">&#xe606;</span>udp</span>
     
+        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
+    
         <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
     
         <span class="sidebar-tag-name" data-tags="gitment"><span class="iconfont-archer">&#xe606;</span>gitment</span>
     
-        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
+        <span class="sidebar-tag-name" data-tags="linux"><span class="iconfont-archer">&#xe606;</span>linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="pthread"><span class="iconfont-archer">&#xe606;</span>pthread</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -553,9 +606,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="coding"><span class="iconfont-archer">&#xe60a;</span>coding</span>
     
-        <span class="sidebar-category-name" data-categories="techniques"><span class="iconfont-archer">&#xe60a;</span>techniques</span>
-    
         <span class="sidebar-category-name" data-categories="life-notes"><span class="iconfont-archer">&#xe60a;</span>life-notes</span>
+    
+        <span class="sidebar-category-name" data-categories="techniques"><span class="iconfont-archer">&#xe60a;</span>techniques</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
