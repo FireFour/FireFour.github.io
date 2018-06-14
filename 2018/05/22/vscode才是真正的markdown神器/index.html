@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>从disqus到gitment-引入评论系统的爬坑之路 · FireFour&#39;s Studio</title>
+    <title>vscode才是真正的markdown神器 · FireFour&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -207,7 +207,7 @@
                 <a href="/" >FireFour&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">从disqus到gitment-引入评论系统的爬坑之路</a>
+                <a href="#" class="post-name">vscode才是真正的markdown神器</a>
             </div>
     </div>
     
@@ -239,7 +239,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            从disqus到gitment-引入评论系统的爬坑之路
+            vscode才是真正的markdown神器
             <!-- 404 -->
             
         </h1>
@@ -257,15 +257,15 @@ height:50vh;
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "blog">blog</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "vscode">vscode</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "gitment">gitment</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "markdown">markdown</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/05/15</span>
+                <span class="post-intro-time">2018/05/22</span>
                 
                 <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                     <span class="iconfont-archer">&#xe602;</span>
@@ -391,40 +391,51 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>这几天一时兴起把快要遗忘的博客捡起来装修装修，然后想到要给博客的文章加个评论系统。调研了一下当下流行的评论系统发现我在用的这个hexo主题已经支持了<code>畅言</code>、<code>友言</code>、<code>disqus</code>、<code>gitment</code>四个评论系统的集成配置，只需要简单填写一下ymal里面的相关配置信息就可以启用，非常方便。看了一下<code>disqus</code>，嗯，国外优秀产品，官网UI很有逼格，看起来应该是高大上的，那就决定是它了~</p>
-<h2 id="disqus从使用到放弃"><a href="#disqus从使用到放弃" class="headerlink" title="disqus从使用到放弃"></a><code>disqus</code>从使用到放弃</h2><p>disqus的注册相对比较简单，在选择用途的时候选择<code>在自己的网站上使用disqus</code>就可以，之后就是按照instruction一步一步走就可以了。配置完成后，把注册用户名填入我的主题目录下面的yaml配置文件里，然后<code>hexo clean</code>, <code>hexo generate</code>, <code>hexo s</code>打开本机端口预览，一气呵成，直接起飞~打开任意一篇博文后拉到最下面，评论框映入眼帘，舒服！</p>
-<p>然后，想看看评论框对移动设备的自适应情况，打开手机safari登上我的博文拉到最底部，刷了半天，什…么…都…没…有！我在想是不是浏览器不兼容，然后尝试了在PC机上的edge和IE11，发现也都不能显示评论框。。。初步定为是disqus浏览器兼容性有问题，就搁置了几天。</p>
-<p>过几天准备再找解决方案的时候想了一下，disqus这么大的国外受众不应该不支持这些主流浏览器啊，于是仔细想了一下，感觉有没有可能是你懂的的原因在国内无法访问，但是我在chrome里面访问我的博客switchyOmega的规则显示是直接访问没走代理啊。为了验证，我在手机上打开了代理，发现评论框竟然可以正常显示了，果然还是被墙了，所以表现出来是只有我PC机上的chrome可以正常访问，原因是chrome加载disqus的时候走的外链通过switchyOmega的过滤规则定向到了代理节点，然后主页面的其他DOM是直接加载得到。</p>
-<p>好吧，折腾了半天，想了想，还是决定放弃disqus，换用一个国内外都兼容的评论系统。</p>
-<h2 id="gitment一探究竟"><a href="#gitment一探究竟" class="headerlink" title="gitment一探究竟"></a><code>gitment</code>一探究竟</h2><p>对比了一下其他竞品，多说关闭了，其他的几个评论系统国外访问不友好（虽然我的小博估计也没什么国外流量哈哈），但是突然发现了<code>gitment</code>这个神器，竟然是一个国内大佬以<code>github issues</code>为基础改的，感觉耳目一新，而且，虽然是只能用<code>github</code>账号登录评论，但是考虑到博客的受众，问题应该不大。于是，就开始用<code>gitment</code>替代<code>disqus</code>。</p>
-<h3 id="初步搭建"><a href="#初步搭建" class="headerlink" title="初步搭建"></a>初步搭建</h3><p>具体的步骤这里就不做赘述了，把<code>gitment</code>作者的<a href="https://imsun.net/posts/gitment-introduction/" target="_blank" rel="noopener">博客</a>贴上来直接操作就可以。</p>
-<ul>
-<li>注册 OAuth Application</li>
-<li>引入 Gitment<pre><code>id: &apos;页面 ID&apos;, // 可选。默认为 location.href
-owner: &apos;你的 GitHub ID&apos;,
-repo: &apos;存储评论的 repo&apos;,
-oauth: {
-    client_id: &apos;你的 client ID&apos;,
-    client_secret: &apos;你的 client secret&apos;,
-},
-</code></pre>  原文中提到的四个配置项填好就可以，注意<code>owner</code>是github的昵称，<code>repo</code>是仓库名不是仓库的<code>.git</code>地址。剩下的两项填注册<code>OAuth Application</code>后生成的就可以。</li>
-<li>初始化评论</li>
-</ul>
-<h3 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h3><p>实际部署的时候遇到了两个问题。</p>
-<ul>
-<li><p>部署后评论框上方出现<code>Error: Not Fount</code></p>
-<p>  这个问题主要原因是默认的<code>id</code>采用了文章标题，所以会过长导致对应的<code>github issue</code>的<code>tag</code>过长（每篇文章的评论对应一个issue, issue有两个<code>tag</code>，一个是<code>&quot;gitment&quot;</code>，另一个就是之前配置项中缺省不填的<code>id</code>）。解决方案也很简单，把之前四个配置项中默认注释掉的<code>id: &#39;页面 ID&#39;, // 可选。默认为 location.href</code>解注，改为<code>page.date</code>，用日期作为id可以解决长度问题，修改后就不会报错了。</p>
+        <p>markdown作为程序员必备的文档编辑神器，突出体现了程序员“关注内容轻格式”的风格，只采用了简单的标记符号，就可以很方便地写出格式漂亮规范统一的文档，岂不快哉！！最开始写markdown的时候，尝试了很多markdown编辑器，甚至包括一些markdown的笔记，后来，当vscode真正全面支持markdown语法以及同步实时预览之后，我才发现了新大陆，可以说vscode基本算是秒杀其他所有markdown编辑器的存在了，下面一一道来。</p>
+<h3 id="同类markdown编辑器比较"><a href="#同类markdown编辑器比较" class="headerlink" title="同类markdown编辑器比较"></a>同类markdown编辑器比较</h3><ul>
+<li><p>为知笔记</p>
+<p>  为知笔记算是市面上一款不错的markdown编辑器了，但是使用过后我也发现了几个比较明显的短板。首先它虽然声称是跨平台的，但是在linux上没有相应的rpm或者deb安装包，而是要到github主页上把项目clone下来自己编译才行，构建工具是cmake，所以相对要麻烦一些，对于一些拿markdown轻写作的非程序员可能有一点小小的门槛。其次，为知笔记的网络同步功能是要收费的，否则你只能用它当作一个本地的markdown编辑器来用。最重要的一点，就是在markdown编辑界面没有实时预览，要点击一个按钮才能出来对应的markdown选然后的文章，并且在编辑界面格式采用的竟然是反人类的microsoft doc的编辑方式，也就是说，你在markdown编辑的时候可以像写word一样设置各种样式和字体大小，虽然最后渲染成markdown文章后长得都一样。。。所以这个设计感觉有点蠢，没用多久就被我抛弃了。</p>
 </li>
-<li>点击<code>Login</code>登录<code>github</code>账号后重定向错误问题<br>  这个问题很可能都会遇到，如果没遇到可能是因为你无意识地避开了这个问题。用hexo new一个新文章的时候，hexo会把这篇文章的文件名作为该篇博文的<code>url</code>。文件名是不支持<code>\ / : * ? &quot; &lt; &gt; |</code>等符号的，但是却可以支持中文标点符号。如果你在文件名中使用了中文标点，那么恭喜你，这个问题就出现了。<code>url</code>中包含中文标点没问题，浏览器也可以正常访问，但是<code>gitment</code>生成的重定向<code>url</code>会把中文标点自动改为英文标点保存在对应<code>issue</code>的第一条评论（这里的地址会作为重定向的地址），因此重定向以后地址不匹配从而报404错误，或者会跳回你在<code>OAuth</code>中填写的<code>callback url</code>，也就是博客首页。所以还是在<code>hexo new</code>文件名的时候避免使用中文标点为好，要想修正这个问题还需要在更正文件名后把github仓库里对应issue的第一条评论里面的url链接也替换为新的文章链接才可以。</li>
+<li><p>作业部落</p>
+<p>  这个也和为知笔记差不多，支持web编辑，但是导出html和pdf之类的要收费，后来也就没怎么关注。</p>
+</li>
+<li><p>有道云笔记</p>
+<p>  这个是我用的比较多的，现在也还在用。有道云笔记是一款支持编写markdown笔记的软件，有网页版，也可以安装客户端，印象笔记就不支持markdown，所以就没用。但是有道云笔记分享出去的markdown笔记经常会无法访问，所以只适合自己记笔记用，不适合做分享。</p>
+</li>
 </ul>
+<h3 id="vscode写markdown有什么过人之处？"><a href="#vscode写markdown有什么过人之处？" class="headerlink" title="vscode写markdown有什么过人之处？"></a>vscode写markdown有什么过人之处？</h3><p>visual studio code写markdown的优点总结为以下几点：</p>
+<ol>
+<li><p>方便的在线预览</p>
+<p> 虽说在线实时预览是markdown编辑器基本都有的功能，但是，作为一款市面上主流的coding editor，能够通过<code>Ctrl K + V</code>直接调出实时markdown预览，感觉是不是棒棒哒！毕竟原生支持markdown实时编辑预览的代码编辑器还是非常有限的。</p>
+<p> <img src="http://p8tf9aeyd.bkt.clouddn.com/markdown.JPG" alt="markdown预览"></p>
+</li>
+<li><p>多样化的插件带来的功能扩展</p>
+<p> 我们知道，vscode最大的优点就是开源带来的丰富的第三方插件，通过这些插件，我们可以大大丰富vscode的markdown编辑功能。随便一搜，markdown的插件就数不胜数。</p>
+<p> <img src="http://p8tf9aeyd.bkt.clouddn.com/markdown插件.JPG" alt="markdown插件"></p>
+<ul>
+<li><p>Markdown All in One</p>
+<p>  这个是下载量最多的一款插件，功能比较齐全，支持github上所有的markdown格式，同时可以导出html等方便分享，同时还有很多方便的快捷键，并且对于github这种不支持<code>[toc]</code>语法的也提供了一键生成目录链接的功能，很方便。</p>
+</li>
+<li><p>Markdown PDF</p>
+<p>  这个插件很强大，可以在vscode里一键导出html, pdf, PNG三种格式支持，配置起来也比较容易，直接搜索插件按照说明完成配置即可使用。</p>
+</li>
+<li><p>vscode-pandoc</p>
+<p>  这个插件和上面的插件功能差不多，但是可以支持markdown导出成Microsoft Word文档，这个功能应该是很多的开发者比较期望的功能了。毕竟，你写的<code>.md</code>文件分享给其他人的时候人家对方可能会一脸懵逼地问你这个东西要怎么打开。。。安装这个插件首先需要在电脑里装pandoc，具体的安装参考插件里的说明页面即可。</p>
+</li>
+</ul>
+</li>
+<li><p>跨平台</p>
+<p> 无论你用的是Mac OS, 还是各种Linux的发行版，还是Windows，你都可以安装Visual Studio Code。因为它是微软开源的，在各个平台都可以下载安装。这样，你就不需要担心在工作中因为操作系统的切换或者换了工作环境导致你不得不去更改以前已经习惯了的Markdown编辑器了。</p>
+</li>
+</ol>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者: <a href="http://firefour.cn">FireFour</a>
-            <p>原文链接: <a href="http://firefour.cn/2018/05/15/从disqus到gitment-引入评论系统的爬坑之路/">http://firefour.cn/2018/05/15/从disqus到gitment-引入评论系统的爬坑之路/</a>
-            <p>发表日期: <a href="http://firefour.cn/2018/05/15/从disqus到gitment-引入评论系统的爬坑之路/">May 15th 2018, 10:51:34</a>
+            <p>原文链接: <a href="http://firefour.cn/2018/05/22/vscode才是真正的markdown神器/">http://firefour.cn/2018/05/22/vscode才是真正的markdown神器/</a>
+            <p>发表日期: <a href="http://firefour.cn/2018/05/22/vscode才是真正的markdown神器/">May 22nd 2018, 4:16:07</a>
             <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -432,17 +443,12 @@ oauth: {
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/05/17/linux下pthread条件变量实现生产者消费者示例/" title= linux下pthread条件变量实现生产者消费者示例 >
-                    <div class="nextTitle">linux下pthread条件变量实现生产者消费者示例</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/05/10/Linux下C网络编程-socket实现ping-pong/" title= Linux下c/c++网络编程:socket实现ping-pong >
-                    <div class="prevTitle">Linux下c/c++网络编程:socket实现ping-pong</div>
+                <a href= "/2018/05/17/linux下pthread条件变量实现生产者消费者示例/" title= linux下pthread条件变量实现生产者消费者示例 >
+                    <div class="prevTitle">linux下pthread条件变量实现生产者消费者示例</div>
                 </a>
             
         </li>
@@ -458,8 +464,8 @@ oauth: {
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        // id: "从disqus到gitment-引入评论系统的爬坑之路", // 可选。默认为 location.href
-        id: "Tue May 15 2018 10:51:34 GMT+0800", // 可选。默认为 location.href
+        // id: "vscode才是真正的markdown神器", // 可选。默认为 location.href
+        id: "Tue May 22 2018 16:16:07 GMT+0800", // 可选。默认为 location.href
         owner: 'FireFour',
         repo: 'FireFour-Gitment-Comments',
         oauth: {
@@ -568,7 +574,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#disqus从使用到放弃"><span class="toc-number">1.</span> <span class="toc-text">disqus从使用到放弃</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitment一探究竟"><span class="toc-number">2.</span> <span class="toc-text">gitment一探究竟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初步搭建"><span class="toc-number">2.1.</span> <span class="toc-text">初步搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#踩坑"><span class="toc-number">2.2.</span> <span class="toc-text">踩坑</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#同类markdown编辑器比较"><span class="toc-number">1.</span> <span class="toc-text">同类markdown编辑器比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vscode写markdown有什么过人之处？"><span class="toc-number">2.</span> <span class="toc-text">vscode写markdown有什么过人之处？</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
