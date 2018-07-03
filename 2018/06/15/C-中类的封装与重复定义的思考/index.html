@@ -68,8 +68,8 @@
 
 </style>
 
-    <link rel="preload" href= /css/style.css?v=20180501 as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= /css/mobile.css?v=20180501 media="(max-width: 980px)">
+    <link rel="preload" href= /css/style.css?v=20180630 as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= /css/mobile.css?v=20180630 media="(max-width: 980px)">
     
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         
@@ -391,8 +391,8 @@ height:50vh;
     <article class="article-entry">
         <p>由于我自身对C/C++的语法不熟练，在C++类的封装时，遇到过”multiple-declaration”或者”multiple definition”的问题。这种情况一般出现在对某一个类的头文件.h和实现文件.cpp封装的时候在头文件中写法不规范导致的。仔细研究了一下，并且查阅了网上一些资料，所以在这里做一个简单的总结。</p>
 <h2 id="C基础数据类型的重复定义"><a href="#C基础数据类型的重复定义" class="headerlink" title="C基础数据类型的重复定义"></a>C基础数据类型的重复定义</h2><p>这种问题一般有两种：同一编译单元内的重复定义和不同编译单元内的重复定义。一个.cc/.cpp/一般就是一个编译单元，会生成对应的.o文件。</p>
-<h3 id="同一编译单元内的重复定义"><a href="#同一编译单元内的重复定义" class="headerlink" title="同一编译单元内的重复定义"></a>同一编译单元内的重复定义</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//student.h</span></span><br><span class="line"><span class="keyword">int</span> age = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">int</span> student_no = <span class="number">1203102</span></span><br><span class="line"><span class="keyword">int</span> sex = <span class="number">0</span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">//school.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"student.h"</span></span></span><br><span class="line"><span class="keyword">int</span> class_no;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search_student</span><span class="params">(<span class="keyword">int</span> stu_no)</span></span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">//school.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"school.h"</span></span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>上述情况，在school.cpp中引用school.h，编译的时候就会报错:”multiple definition”，原因就在于，school.h引用了student.h，然后又被school.cpp中引用，到了school.cpp中，相当于对student.h引用了两次，于是对于age等变量相当于在同一个编译单元内重复定义了两边，编译就报错了。解决方法是在每一个.h文件加宏来确保在同一个编译单元内只被引用一次。比如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//student.h</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STUDENT_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STUDENT_H</span></span><br><span class="line"><span class="keyword">int</span> age = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">int</span> student_no = <span class="number">1203102</span>;</span><br><span class="line"><span class="keyword">int</span> sex = <span class="number">0</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h3 id="同一编译单元内的重复定义"><a href="#同一编译单元内的重复定义" class="headerlink" title="同一编译单元内的重复定义"></a>同一编译单元内的重复定义</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//student.h</span></span><br><span class="line"><span class="keyword">int</span> age = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">int</span> student_no = <span class="number">1203102</span></span><br><span class="line"><span class="keyword">int</span> sex = <span class="number">0</span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">//school.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"student.h"</span></span></span><br><span class="line"><span class="keyword">int</span> class_no;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search_student</span><span class="params">(<span class="keyword">int</span> stu_no)</span></span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">//school.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"school.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"student.h"</span></span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>上述情况，在school.cpp中引用school.h和student.h，编译的时候就会报错:”multiple definition”，原因就在于，school.h引用了student.h，school.cpp中又引用了一遍student.h，相当于对student.h引用了两次，于是对于age等变量相当于在同一个编译单元内重复定义了两遍，编译就报错了。解决方法是在每一个.h文件加宏来确保在同一个编译单元内只被引用一次。比如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//student.h</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STUDENT_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STUDENT_H</span></span><br><span class="line"><span class="keyword">int</span> age = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">int</span> student_no = <span class="number">1203102</span>;</span><br><span class="line"><span class="keyword">int</span> sex = <span class="number">0</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <h3 id="不同编译单元内的重复定义"><a href="#不同编译单元内的重复定义" class="headerlink" title="不同编译单元内的重复定义"></a>不同编译单元内的重复定义</h3><p>当然，上述情况并没有从根本上解决问题，比如看下面代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//student.h</span></span><br><span class="line"><span class="keyword">int</span> age = <span class="number">23</span>;</span><br><span class="line"><span class="keyword">int</span> student_no = <span class="number">1203102</span>;</span><br><span class="line"><span class="keyword">int</span> sex = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_age</span><span class="params">()</span></span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">//student.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"student.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_age</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> age;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">//test.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"student.h"</span></span></span><br><span class="line"><span class="keyword">int</span> stu_age = get_age();</span><br></pre></td></tr></table></figure>
 <p>比如有这样三个文件，student.h是学生类的头文件，student.cpp是学生类的实现文件，test.cpp是引用这个类的测试文件。这种用法是很常规的用法。但是编译的时候会报错重复定义错误。原因就在于student.h中的变量声明的同时做了定义，include到两个不同的cpp文件，即两个编译单元后，由于编译会最终把student.o和test.o编译到一起，所以还是会报重复定义的错误。</p>
@@ -647,8 +647,6 @@ top:50vh;
     
     
     
-    
-    
     <div class="total-archive"> Total : 7 </div>
     
     <div class="post-archive">
@@ -699,29 +697,29 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="C/C++"><span class="iconfont-archer">&#xe606;</span>C/C++</span>
+        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
     
-        <span class="sidebar-tag-name" data-tags="socket"><span class="iconfont-archer">&#xe606;</span>socket</span>
-    
-        <span class="sidebar-tag-name" data-tags="udp"><span class="iconfont-archer">&#xe606;</span>udp</span>
+        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
-    
-        <span class="sidebar-tag-name" data-tags="linux"><span class="iconfont-archer">&#xe606;</span>linux</span>
-    
-        <span class="sidebar-tag-name" data-tags="pthread"><span class="iconfont-archer">&#xe606;</span>pthread</span>
-    
-        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
     
         <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
     
         <span class="sidebar-tag-name" data-tags="markdown"><span class="iconfont-archer">&#xe606;</span>markdown</span>
     
+        <span class="sidebar-tag-name" data-tags="linux"><span class="iconfont-archer">&#xe606;</span>linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="C/C++"><span class="iconfont-archer">&#xe606;</span>C/C++</span>
+    
+        <span class="sidebar-tag-name" data-tags="pthread"><span class="iconfont-archer">&#xe606;</span>pthread</span>
+    
         <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
     
         <span class="sidebar-tag-name" data-tags="gitment"><span class="iconfont-archer">&#xe606;</span>gitment</span>
     
-        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
+        <span class="sidebar-tag-name" data-tags="socket"><span class="iconfont-archer">&#xe606;</span>socket</span>
+    
+        <span class="sidebar-tag-name" data-tags="udp"><span class="iconfont-archer">&#xe606;</span>udp</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -756,11 +754,11 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="coding"><span class="iconfont-archer">&#xe60a;</span>coding</span>
-    
         <span class="sidebar-category-name" data-categories="techniques"><span class="iconfont-archer">&#xe60a;</span>techniques</span>
     
         <span class="sidebar-category-name" data-categories="life-notes"><span class="iconfont-archer">&#xe60a;</span>life-notes</span>
+    
+        <span class="sidebar-category-name" data-categories="coding"><span class="iconfont-archer">&#xe60a;</span>coding</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
