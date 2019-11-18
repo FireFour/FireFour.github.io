@@ -336,6 +336,38 @@
     
     
         <article class="index-post">
+            <a class="abstract-title" href = "/2019/11/18/Linux非阻塞socket编程之epoll/" >
+                
+                    <span>Linux非阻塞socket编程之epoll</span>
+            </a>
+            <div class="abstract-content">
+                Linux下非阻塞socket编程常用的有两种实现：select和epoll。但是select受限于描述符数目限制，实际使用的时候人们大多数都会采用epoll形式来实现（如果在windows下没有epoll原生支持，可以使用select方式）。
+Epoll主要有以下三个接口：
+1234#include &lt;sys/epoll.h&gt;int epoll_create(int size);int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);int epoll_wait(int epfd, struct ...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/18</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "C/C++">C/C++</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "socket">socket</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "linux">linux</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="abstract-title" href = "/2018/05/10/Linux下C网络编程-socket实现ping-pong/" >
                 
                     <span>Linux下c/c++网络编程:socket实现ping-pong</span>
@@ -516,12 +548,43 @@
     
     
     
-    <div class="total-archive"> Total : 7 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 8 </div>
     
     <div class="post-archive">
     
     
     
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/18</span><a class="archive-post-title" href= "/2019/11/18/Linux非阻塞socket编程之epoll/" >Linux非阻塞socket编程之epoll</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
@@ -566,29 +629,23 @@
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
-    
-        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
-    
         <span class="sidebar-tag-name" data-tags="C/C++"><span class="iconfont-archer">&#xe606;</span>C/C++</span>
     
         <span class="sidebar-tag-name" data-tags="socket"><span class="iconfont-archer">&#xe606;</span>socket</span>
     
         <span class="sidebar-tag-name" data-tags="udp"><span class="iconfont-archer">&#xe606;</span>udp</span>
     
-        <span class="sidebar-tag-name" data-tags="json"><span class="iconfont-archer">&#xe606;</span>json</span>
-    
-        <span class="sidebar-tag-name" data-tags="jsoncpp"><span class="iconfont-archer">&#xe606;</span>jsoncpp</span>
-    
-        <span class="sidebar-tag-name" data-tags="c++"><span class="iconfont-archer">&#xe606;</span>c++</span>
-    
         <span class="sidebar-tag-name" data-tags="linux"><span class="iconfont-archer">&#xe606;</span>linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
     
         <span class="sidebar-tag-name" data-tags="pthread"><span class="iconfont-archer">&#xe606;</span>pthread</span>
     
         <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
     
         <span class="sidebar-tag-name" data-tags="gitment"><span class="iconfont-archer">&#xe606;</span>gitment</span>
+    
+        <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
         <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
     
