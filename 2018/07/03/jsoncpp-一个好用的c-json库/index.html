@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>vscode才是真正的markdown神器 · FireFour&#39;s Studio</title>
+    <title>jsoncpp-一个好用的c++json库 · FireFour&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -207,7 +207,7 @@
                 <a href="/" >FireFour&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">vscode才是真正的markdown神器</a>
+                <a href="#" class="post-name">jsoncpp-一个好用的c++json库</a>
             </div>
     </div>
     
@@ -239,7 +239,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            vscode才是真正的markdown神器
+            jsoncpp-一个好用的c++json库
             <!-- 404 -->
             
         </h1>
@@ -257,15 +257,17 @@ height:50vh;
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "vscode">vscode</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "json">json</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "markdown">markdown</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "jsoncpp">jsoncpp</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "c++">c++</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/05/22</span>
+                <span class="post-intro-time">2018/07/03</span>
                 
                 <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                     <span class="iconfont-archer">&#xe602;</span>
@@ -391,41 +393,15 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>markdown作为程序员必备的文档编辑神器，突出体现了程序员“关注内容轻格式”的风格，只采用了简单的标记符号，就可以很方便地写出格式漂亮规范统一的文档，岂不快哉！！最开始写markdown的时候，尝试了很多markdown编辑器，甚至包括一些markdown的笔记，后来，当vscode真正全面支持markdown语法以及同步实时预览之后，我才发现了新大陆，可以说vscode基本算是秒杀其他所有markdown编辑器的存在了，下面一一道来。</p>
-<h3 id="同类markdown编辑器比较"><a href="#同类markdown编辑器比较" class="headerlink" title="同类markdown编辑器比较"></a>同类markdown编辑器比较</h3><ul>
-<li><p>为知笔记</p>
-<p>  为知笔记算是市面上一款不错的markdown编辑器了，但是使用过后我也发现了几个比较明显的短板。首先它虽然声称是跨平台的，但是在linux上没有相应的rpm或者deb安装包，而是要到github主页上把项目clone下来自己编译才行，构建工具是cmake，所以相对要麻烦一些，对于一些拿markdown轻写作的非程序员可能有一点小小的门槛。其次，为知笔记的网络同步功能是要收费的，否则你只能用它当作一个本地的markdown编辑器来用。最重要的一点，就是在markdown编辑界面没有实时预览，要点击一个按钮才能出来对应的markdown选然后的文章，并且在编辑界面格式采用的竟然是反人类的microsoft doc的编辑方式，也就是说，你在markdown编辑的时候可以像写word一样设置各种样式和字体大小，虽然最后渲染成markdown文章后长得都一样。。。所以这个设计感觉有点蠢，没用多久就被我抛弃了。</p>
-</li>
-<li><p>作业部落</p>
-<p>  这个也和为知笔记差不多，支持web编辑，但是导出html和pdf之类的要收费，后来也就没怎么关注。</p>
-</li>
-<li><p>有道云笔记</p>
-<p>  这个是我用的比较多的，现在也还在用。有道云笔记是一款支持编写markdown笔记的软件，有网页版，也可以安装客户端，印象笔记就不支持markdown，所以就没用。但是有道云笔记分享出去的markdown笔记经常会无法访问，所以只适合自己记笔记用，不适合做分享。</p>
-</li>
-</ul>
-<h3 id="vscode写markdown有什么过人之处？"><a href="#vscode写markdown有什么过人之处？" class="headerlink" title="vscode写markdown有什么过人之处？"></a>vscode写markdown有什么过人之处？</h3><p>visual studio code写markdown的优点总结为以下几点：</p>
+        <p>json是一种前端领域非常常用的数据存储表示格式，其实就是js对象的一种衍生，它同样采用了key-value的形式来存储，但对此做了限制，key必须是字符串才行，也就是必须要带<code>&quot;&quot;</code>，value可以是任意类型表示。json因为它的广泛通用性，也被用在了后端以及各个其他领域内，基于json的python, c++, java的库有很多，因为我平常主要是做c++的开发，因此把我用到的比较多的一个github开源库-jsoncpz做一个使用笔记并且推荐给大家。</p>
+<h2 id="引入jsoncpp"><a href="#引入jsoncpp" class="headerlink" title="引入jsoncpp"></a>引入jsoncpp</h2><p>jsoncpp的获取方式有两种：</p>
 <ol>
-<li><p>方便的在线预览</p>
-<p> 虽说在线实时预览是markdown编辑器基本都有的功能，但是，作为一款市面上主流的coding editor，能够通过<code>Ctrl K + V</code>直接调出实时markdown预览，感觉是不是棒棒哒！毕竟原生支持markdown实时编辑预览的代码编辑器还是非常有限的。</p>
-<p> <img src="http://ww1.sinaimg.cn/large/a3543933gy1g926g1ms7ij21p40zzn7u.jpg" alt="markdown预览"></p>
+<li><p>通过yum/apt-get直接安装：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CentOS:</span><br><span class="line">sudo yum install jsoncpp</span><br><span class="line">sudo yum install jsoncpp-devel</span><br><span class="line">Ubuntu:</span><br><span class="line">sudo apt-get install jsoncpp</span><br><span class="line">sudo apt-get install jsoncpp-dev</span><br></pre></td></tr></table></figure>
+<p> 这样，jsoncpp的头文件和动态库就会被添加到系统默认路径<code>/usr/include</code>和<code>/usr/lib64</code>下面了，通过g++编译参数或者makefile或者cmake等其他构建工具引入到项目中就可以使用了。</p>
 </li>
-<li><p>多样化的插件带来的功能扩展</p>
-<p> 我们知道，vscode最大的优点就是开源带来的丰富的第三方插件，通过这些插件，我们可以大大丰富vscode的markdown编辑功能。随便一搜，markdown的插件就数不胜数。</p>
-<p> <img src="http://ww1.sinaimg.cn/large/a3543933gy1g926gs005jj207r0yz40k.jpg" alt="markdown插件"></p>
-<ul>
-<li><p>Markdown All in One</p>
-<p>  这个是下载量最多的一款插件，功能比较齐全，支持github上所有的markdown格式，同时可以导出html等方便分享，同时还有很多方便的快捷键，并且对于github这种不支持<code>[toc]</code>语法的也提供了一键生成目录链接的功能，很方便。</p>
-</li>
-<li><p>Markdown PDF</p>
-<p>  这个插件很强大，可以在vscode里一键导出html, pdf, PNG三种格式支持，配置起来也比较容易，直接搜索插件按照说明完成配置即可使用。</p>
-</li>
-<li><p>vscode-pandoc</p>
-<p>  这个插件和上面的插件功能差不多，但是可以支持markdown导出成Microsoft Word文档，这个功能应该是很多的开发者比较期望的功能了。毕竟，你写的<code>.md</code>文件分享给其他人的时候人家对方可能会一脸懵逼地问你这个东西要怎么打开。。。安装这个插件首先需要在电脑里装pandoc，具体的安装参考插件里的说明页面即可。</p>
-</li>
-</ul>
-</li>
-<li><p>跨平台</p>
-<p> 无论你用的是Mac OS, 还是各种Linux的发行版，还是Windows，你都可以安装Visual Studio Code。因为它是微软开源的，在各个平台都可以下载安装。这样，你就不需要担心在工作中因为操作系统的切换或者换了工作环境导致你不得不去更改以前已经习惯了的Markdown编辑器了。</p>
+<li><p>直接将源文件放到项目工程里一起编译</p>
+<p> 这部分的做法是官方github上的唯一推荐做法，相应的README里面已经有明确的说明步骤，这里就不再做赘述了，相关操作直接移步<a href="https://github.com/open-source-parsers/jsoncpp/wiki/Amalgamated" target="_blank" rel="noopener">这里</a>。其实就是运行github</p>
 </li>
 </ol>
 
@@ -434,8 +410,8 @@ height:50vh;
     
         <div class="license-wrapper">
             <p>原文作者: <a href="http://firefour.cn">FireFour</a>
-            <p>原文链接: <a href="http://firefour.cn/2018/05/22/vscode才是真正的markdown神器/">http://firefour.cn/2018/05/22/vscode才是真正的markdown神器/</a>
-            <p>发表日期: <a href="http://firefour.cn/2018/05/22/vscode才是真正的markdown神器/">May 22nd 2018, 4:16:07</a>
+            <p>原文链接: <a href="http://firefour.cn/2018/07/03/jsoncpp-一个好用的c-json库/">http://firefour.cn/2018/07/03/jsoncpp-一个好用的c-json库/</a>
+            <p>发表日期: <a href="http://firefour.cn/2018/07/03/jsoncpp-一个好用的c-json库/">July 3rd 2018, 10:31:54</a>
             <p>版权声明: 本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -443,17 +419,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/06/14/beyond-compare激活解决办法/" title= beyond_compare激活解决办法 >
-                    <div class="nextTitle">beyond_compare激活解决办法</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/05/17/linux下pthread条件变量实现生产者消费者示例/" title= linux下pthread条件变量实现生产者消费者示例 >
-                    <div class="prevTitle">linux下pthread条件变量实现生产者消费者示例</div>
+                <a href= "/2018/06/15/C-中类的封装与重复定义的思考/" title= C++中类的封装与重复定义的思考 >
+                    <div class="prevTitle">C++中类的封装与重复定义的思考</div>
                 </a>
             
         </li>
@@ -469,8 +440,8 @@ height:50vh;
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
     var gitment = new Gitment({
-        // id: "vscode才是真正的markdown神器", // 可选。默认为 location.href
-        id: "Tue May 22 2018 16:16:07 GMT+0800", // 可选。默认为 location.href
+        // id: "jsoncpp-一个好用的c++json库", // 可选。默认为 location.href
+        id: "Tue Jul 03 2018 10:31:54 GMT+0800", // 可选。默认为 location.href
         owner: 'FireFour',
         repo: 'FireFour-Gitment-Comments',
         oauth: {
@@ -579,7 +550,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#同类markdown编辑器比较"><span class="toc-number">1.</span> <span class="toc-text">同类markdown编辑器比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vscode写markdown有什么过人之处？"><span class="toc-number">2.</span> <span class="toc-text">vscode写markdown有什么过人之处？</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入jsoncpp"><span class="toc-number">1.</span> <span class="toc-text">引入jsoncpp</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
