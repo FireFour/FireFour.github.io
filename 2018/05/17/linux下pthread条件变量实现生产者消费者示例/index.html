@@ -395,7 +395,7 @@ height:50vh;
     <article class="article-entry">
         <p>Linux下pthread线程同步主要有两种方法：信号量(semaphore)和条件变量(condition_variable)，在生产者消费者的实例中，通常用到的是信号量来进行同步。本文采用条件变量的通知机制，实现类似信号量的功能，完成生产者消费者示例，并在最后贴出代码。另外pthread的信号量有二值信号量和计数信号量两种，第一种信号量只有0和1两个值，用法类似条件变量，第二种就是传统的介于0-限制值的一个信号量，可以用来统计可用资源数目。本文就是用了<code>notempty</code>和<code>notfull</code>两个条件变量来表示资源空和资源已达上限两种状态。</p>
 <h3 id="程序步骤"><a href="#程序步骤" class="headerlink" title="程序步骤"></a>程序步骤</h3><p>首先，用户需要在main函数里创建consumer和producer两个线程，之后调用join方法等待两个线程退出。同时要用到两个条件变量<code>notempty</code>和<code>notfull</code>。在生产者线程中，生产一个资源之前先判断<code>notfull</code>，确保资源数没到上限，之后再生产一个资源，即往消息队列中push一个Packet，然后向消费者发送一个<code>notempty</code>信号表示已经生产了一个资源，可用资源数不为空。在消费者线程中，消费一个资源之前先判断<code>notempty</code>，确保当前消息队列中有资源，之后再消费一个资源，即从消息队列中pop一个Packet，然后向生产者发送一个<code>notfull</code>信号表示已经消费了一个资源，资源数没有到上限。生产者和消费者的处理函数正好是两个相反的对称的过程，可以用下图来表示：</p>
-<p><img src="http://ww1.sinaimg.cn/large/a3543933gy1g926em8aelj20fk0d4wee.jpg" alt="consumer_producer.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/a3543933gy1g926em8aelj20fk0d4wee.jpg" alt="consumer_producer"></p>
 <h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> BUFFER_SIZE = <span class="number">1500</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Packet_s</span>&#123;</span></span><br><span class="line">	<span class="keyword">char</span> buffer[BUFFER_SIZE];</span><br><span class="line">	<span class="keyword">int</span> len;</span><br><span class="line">&#125;Packet;</span><br><span class="line"></span><br><span class="line"><span class="built_in">queue</span>&lt;Packet&gt; packetQueue;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMIT_SIZE = <span class="number">1500</span>;</span><br><span class="line"><span class="comment">// 缓冲区相关数据结构</span></span><br><span class="line"><span class="keyword">pthread_mutex_t</span> lock; <span class="comment">/* 互斥体lock 用于对缓冲区的互斥操作 */</span></span><br><span class="line"><span class="comment">// int readpos, writepos; /* 读写指针*/</span></span><br><span class="line"><span class="keyword">pthread_cond_t</span> notempty; <span class="comment">/* 缓冲区非空的条件变量 */</span></span><br><span class="line"><span class="keyword">pthread_cond_t</span> notfull; <span class="comment">/* 缓冲区未满的条件变量 */</span>	</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 生产者线程处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">produce</span><span class="params">(<span class="keyword">void</span> *data)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">100000</span>; i++)&#123;</span><br><span class="line">		Packet tmp;</span><br><span class="line">		<span class="built_in">memcpy</span>(tmp.buffer, &amp;i, <span class="keyword">sizeof</span>(i));</span><br><span class="line">		tmp.len = <span class="keyword">sizeof</span>(i);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 假定队列的大小限制为1500，到达这个值认为队列满了，等待</span></span><br><span class="line">		<span class="comment">// 消费者取出后，再向队列里push</span></span><br><span class="line">		pthread_mutex_lock(&amp;lock);</span><br><span class="line">		<span class="keyword">while</span>(packetQueue.size() == LIMIT_SIZE)&#123;</span><br><span class="line">			pthread_cond_wait(&amp;notfull, &amp;lock);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		packetQueue.push(tmp);</span><br><span class="line">		pthread_mutex_unlock(&amp;lock); <span class="comment">// 给互斥体变量解除锁</span></span><br><span class="line">		</span><br><span class="line">		pthread_cond_signal(&amp;notempty);</span><br><span class="line">		<span class="comment">// 每一次push后设置notempty条件变量</span></span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Producer["</span> &lt;&lt; i &lt;&lt; <span class="string">"]"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消费者线程处理函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">consume</span><span class="params">(<span class="keyword">void</span> *data)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		pthread_mutex_lock(&amp;lock);</span><br><span class="line">		<span class="keyword">while</span>(packetQueue.size() == <span class="number">0</span>)&#123;</span><br><span class="line">			pthread_cond_wait(&amp;notempty, &amp;lock);</span><br><span class="line">		&#125;</span><br><span class="line">		Packet packet = packetQueue.front();</span><br><span class="line">		packetQueue.pop();</span><br><span class="line">		pthread_mutex_unlock(&amp;lock);	</span><br><span class="line">		</span><br><span class="line">		pthread_cond_signal(&amp;notfull);</span><br><span class="line">		<span class="keyword">int</span> *data = (<span class="keyword">int</span> *)packet.buffer;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Consumer["</span> &lt;&lt; *data &lt;&lt; <span class="string">"]"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">if</span>(*data == <span class="number">99999</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//初始化条件变量和互斥锁</span></span><br><span class="line">	pthread_mutex_init(&amp;lock, <span class="literal">NULL</span>);</span><br><span class="line">	pthread_cond_init(&amp;notempty, <span class="literal">NULL</span>);</span><br><span class="line">	pthread_cond_init(&amp;notfull, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">pthread_t</span> producer, consumer;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 创建生产者和消费者线程*/</span></span><br><span class="line">	pthread_create(&amp;producer, <span class="literal">NULL</span>, produce, <span class="literal">NULL</span>);</span><br><span class="line">	pthread_create(&amp;consumer, <span class="literal">NULL</span>, consume, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 等待线程退出 */</span></span><br><span class="line">	pthread_join(producer, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"producer exit!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	pthread_join(consumer, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"consumer exit!"</span> &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line"></span><br><span class="line">	pthread_mutex_destroy(&amp;lock);</span><br><span class="line">	pthread_cond_destroy(&amp;notempty);</span><br><span class="line">	pthread_cond_destroy(&amp;notfull);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="关于条件变量"><a href="#关于条件变量" class="headerlink" title="关于条件变量"></a>关于条件变量</h3><ul>
 <li><p>基本用法</p>
@@ -660,18 +660,7 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 8 </div>
+    <div class="total-archive"> Total : 7 </div>
     
     <div class="post-archive">
     
@@ -680,11 +669,6 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/03</span><a class="archive-post-title" href= "/2018/07/03/jsoncpp-一个好用的c-json库/" >jsoncpp-一个好用的c++json库</a>
-        </li>
     
     
         <li class="archive-post-item">
@@ -728,17 +712,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
+        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
+    
         <span class="sidebar-tag-name" data-tags="C/C++"><span class="iconfont-archer">&#xe606;</span>C/C++</span>
     
         <span class="sidebar-tag-name" data-tags="socket"><span class="iconfont-archer">&#xe606;</span>socket</span>
     
         <span class="sidebar-tag-name" data-tags="udp"><span class="iconfont-archer">&#xe606;</span>udp</span>
-    
-        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
-    
-        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
-    
-        <span class="sidebar-tag-name" data-tags="markdown"><span class="iconfont-archer">&#xe606;</span>markdown</span>
     
         <span class="sidebar-tag-name" data-tags="json"><span class="iconfont-archer">&#xe606;</span>json</span>
     
@@ -750,11 +730,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="pthread"><span class="iconfont-archer">&#xe606;</span>pthread</span>
     
-        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
-    
         <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
     
         <span class="sidebar-tag-name" data-tags="gitment"><span class="iconfont-archer">&#xe606;</span>gitment</span>
+    
+        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="markdown"><span class="iconfont-archer">&#xe606;</span>markdown</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

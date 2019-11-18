@@ -341,8 +341,8 @@
                     <span>Linux下c/c++网络编程:socket实现ping-pong</span>
             </a>
             <div class="abstract-content">
-                在Linux下实现socket网络编程的示例网上有很�?�，在工作中遇到的场�?�?要测试跨机器的网络时延。之前采用了一�?开源工具sfnettest来做回环测试，但是sfnt封�?�了较�?�层，一些小的定制化改动不太方便，于�?打算模仿sfnt-pingpong�?己在Linux下写一个ping-pong程序来测试回�?的时延，顺便也练练手�?
-原理程序将client和server�?写在了一起，通过命令行参数来区分。运行时先运行server，再运�?�client。程序开始工作后，client�?会先向server�?发ping，具体为调用sendto()函数(这里用的�?无连接的...
+                在Linux下实现socket网络编程的示例网上有很多，在工作中遇到的场景是要测试跨机器的网络时延。之前采用了一个开源工具sfnettest来做回环测试，但是sfnt封装了较多层，一些小的定制化改动不太方便，于是打算模仿sfnt-pingpong自己在Linux下写一个ping-pong程序来测试回环的时延，顺便也练练手。
+原理程序将client和server端写在了一起，通过命令行参数来区分。运行时先运行server，再运行client。程序开始工作后，client端会先向server端发ping，具体为调用sendto()函数(这里用的是无连接的UDP协议)向server端发送一个5...
             </div>
             <div class="abstract-post-meta">
                 <!-- date  -->
@@ -516,18 +516,7 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-archive"> Total : 8 </div>
+    <div class="total-archive"> Total : 7 </div>
     
     <div class="post-archive">
     
@@ -536,11 +525,6 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/03</span><a class="archive-post-title" href= "/2018/07/03/jsoncpp-一个好用的c-json库/" >jsoncpp-一个好用的c++json库</a>
-        </li>
     
     
         <li class="archive-post-item">
@@ -584,17 +568,13 @@
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
+        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
+    
         <span class="sidebar-tag-name" data-tags="C/C++"><span class="iconfont-archer">&#xe606;</span>C/C++</span>
     
         <span class="sidebar-tag-name" data-tags="socket"><span class="iconfont-archer">&#xe606;</span>socket</span>
     
         <span class="sidebar-tag-name" data-tags="udp"><span class="iconfont-archer">&#xe606;</span>udp</span>
-    
-        <span class="sidebar-tag-name" data-tags="software"><span class="iconfont-archer">&#xe606;</span>software</span>
-    
-        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
-    
-        <span class="sidebar-tag-name" data-tags="markdown"><span class="iconfont-archer">&#xe606;</span>markdown</span>
     
         <span class="sidebar-tag-name" data-tags="json"><span class="iconfont-archer">&#xe606;</span>json</span>
     
@@ -606,11 +586,15 @@
     
         <span class="sidebar-tag-name" data-tags="pthread"><span class="iconfont-archer">&#xe606;</span>pthread</span>
     
-        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
-    
         <span class="sidebar-tag-name" data-tags="blog"><span class="iconfont-archer">&#xe606;</span>blog</span>
     
         <span class="sidebar-tag-name" data-tags="gitment"><span class="iconfont-archer">&#xe606;</span>gitment</span>
+    
+        <span class="sidebar-tag-name" data-tags="life"><span class="iconfont-archer">&#xe606;</span>life</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="markdown"><span class="iconfont-archer">&#xe606;</span>markdown</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
